@@ -1,0 +1,69 @@
+{
+    "name": "pipeline-relay",
+    "displayName": "Pipeline Relay",
+    "description": "File-based trigger for Antigravity chats. Create a trigger file in .relay/ → dispatch its contents as a prompt.",
+    "version": "0.1.0",
+    "publisher": "dao-woo",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dao-woo/pipeline-relay"
+    },
+    "license": "MIT",
+    "keywords": [
+        "ai",
+        "agent",
+        "automation",
+        "relay",
+        "antigravity"
+    ],
+    "engines": {
+        "vscode": "^1.100.0"
+    },
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "capabilities": {
+        "untrustedWorkspaces": {
+            "supported": false,
+            "description": "Pipeline Relay reads .relay files from the workspace and sends their contents as prompts. Trust the workspace before enabling relay dispatch."
+        }
+    },
+    "main": "./extension.js",
+    "icon": "images/icon.png",
+    "categories": [
+        "Other"
+    ],
+    "contributes": {
+        "commands": [
+            {
+                "command": "pipelineRelay.toggle",
+                "title": "Pipeline Relay: Toggle Pause/Resume"
+            }
+        ],
+        "configuration": {
+            "title": "Pipeline Relay",
+            "properties": {
+                "pipelineRelay.startPaused": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Start paused on activation. When true, you need to click the status bar button to begin watching. Prevents stale files from previous sessions from auto-dispatching."
+                },
+                "pipelineRelay.afterNewChatDelay": {
+                    "type": "number",
+                    "default": 2000,
+                    "description": "Delay (ms) after creating a new chat before sending the prompt."
+                },
+                "pipelineRelay.afterSendDelay": {
+                    "type": "number",
+                    "default": 2000,
+                    "description": "Delay (ms) after sending the prompt before processing the next trigger."
+                },
+                "pipelineRelay.writeJsonLog": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Write JSONL dispatch events, including full prompt contents, to .relay/.logs/relay.jsonl. Disable to avoid storing prompts on disk."
+                }
+            }
+        }
+    }
+}

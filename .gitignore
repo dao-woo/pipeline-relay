@@ -1,0 +1,8 @@
+node_modules/
+*.vsix
+.DS_Store
+__pycache__/
+
+.agent/
+.relay/
+
