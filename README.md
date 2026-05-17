@@ -8,7 +8,7 @@ No private APIs. No network calls. No dependencies. ~240 lines of code.
 
 ## Demo
 
-[![Pipeline Relay one-minute timelapse demo](https://img.youtube.com/vi/LbA1JFgAcFM/hqdefault.jpg)](https://youtu.be/VeztP6-v2tE)
+[![Pipeline Relay one-minute timelapse demo](https://i.ytimg.com/vi/VeztP6-v2tE/maxresdefault.jpg)](https://youtu.be/VeztP6-v2tE)
 
 A one-minute timelapse of a 2+ hour Pipeline Relay run: 181 Antigravity agents working through an OCR workflow via file-based `.relay` triggers.
 
