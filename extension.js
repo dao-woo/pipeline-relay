@@ -1,4 +1,4 @@
-// Pipeline Relay v0.1.0
+// Pipeline Relay v0.1.1
 // Watches .relay/*.relay trigger files and dispatches their contents to a new or existing Antigravity chat
 // Claims triggers as .inflight; deletes on success, renames to .crash on failure
 
@@ -18,12 +18,12 @@ const LOG_FILE = 'relay.jsonl';
 
 function log(msg) {
     console.log(`[Relay] ${msg}`);
-    if (outputChannel) outputChannel.appendLine(`[${new Date().toISOString()}] ${msg}`);
+    if (outputChannel) outputChannel.appendLine(`[${new Date().toLocaleString()}] ${msg}`);
 }
 
 function logError(msg) {
     console.error(`[Relay] ${msg}`);
-    if (outputChannel) outputChannel.appendLine(`[${new Date().toISOString()}] ERROR: ${msg}`);
+    if (outputChannel) outputChannel.appendLine(`[${new Date().toLocaleString()}] ERROR: ${msg}`);
 }
 
 function appendLog(workspaceRoot, entry) {
@@ -93,7 +93,7 @@ function activate(context) {
     // Scan existing triggers when activation starts unpaused
     if (!paused) scanRelay(workspaceRoot);
 
-    log(`v0.1.0 activated (${paused ? 'paused' : 'watching'}). Watching: ${RELAY_DIR}/*.relay`);
+    log(`v0.1.1 activated (${paused ? 'paused' : 'watching'}). Watching: ${RELAY_DIR}/*.relay`);
 }
 
 function createWatcher(workspaceRoot) {
@@ -199,7 +199,7 @@ async function handleTrigger(filePath, workspaceRoot) {
             const crashPath = filePath + '.crash';
             fs.renameSync(inflightPath, crashPath);
             logError(`CRASH (startNewConversation): ${fileName} -> ${path.basename(crashPath)}`);
-            appendLog(workspaceRoot, { ts: new Date().toISOString(), status: 'crash', file: fileName, type: triggerType, error: 'startNewConversation failed after retries', prompt });
+            appendLog(workspaceRoot, { ts: new Date().toLocaleString(), status: 'crash', file: fileName, type: triggerType, error: 'startNewConversation failed after retries', prompt });
             return;
         }
         await new Promise(r => setTimeout(r, config.afterNewChatDelay));
@@ -209,13 +209,13 @@ async function handleTrigger(filePath, workspaceRoot) {
         const crashPath = filePath + '.crash';
         fs.renameSync(inflightPath, crashPath);
         logError(`CRASH (sendPromptToAgentPanel): ${fileName} -> ${path.basename(crashPath)}`);
-        appendLog(workspaceRoot, { ts: new Date().toISOString(), status: 'crash', file: fileName, type: triggerType, error: 'sendPromptToAgentPanel failed after retries', prompt });
+        appendLog(workspaceRoot, { ts: new Date().toLocaleString(), status: 'crash', file: fileName, type: triggerType, error: 'sendPromptToAgentPanel failed after retries', prompt });
         return;
     }
     await new Promise(r => setTimeout(r, config.afterSendDelay));
 
     fs.unlinkSync(inflightPath);
-    appendLog(workspaceRoot, { ts: new Date().toISOString(), status: 'ok', file: fileName, type: triggerType, prompt });
+    appendLog(workspaceRoot, { ts: new Date().toLocaleString(), status: 'ok', file: fileName, type: triggerType, prompt });
     log(`Done: ${fileName}`);
 }
 

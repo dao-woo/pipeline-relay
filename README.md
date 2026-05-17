@@ -6,6 +6,12 @@ An Antigravity IDE extension that lets AI agents launch other agents.
 
 No private APIs. No network calls. No dependencies. ~240 lines of code.
 
+## Demo
+
+[![Pipeline Relay one-minute timelapse demo](https://img.youtube.com/vi/LbA1JFgAcFM/hqdefault.jpg)](https://youtu.be/LbA1JFgAcFM)
+
+A one-minute timelapse of a 2+ hour Pipeline Relay run: 181 Antigravity agents working through an OCR workflow via file-based `.relay` triggers.
+
 ## Quick Start
 
 Restart Antigravity after installation and click **⏸ Relay** in the status bar to unpause. The extension starts paused by default.
@@ -92,10 +98,10 @@ Clone the repo and copy the extension folder into your Antigravity `extensions/`
 
 When `pipelineRelay.writeJsonLog` is enabled, each successful or failed dispatch is recorded to `.relay/.logs/relay.jsonl` — one JSON line per event. The log lives in a hidden directory so it doesn't distract agents working with trigger files.
 ```json
-{"ts":"2026-04-15T12:00:00.000Z","status":"ok","file":"review.relay","type":"dispatch","prompt":"..."}
-{"ts":"2026-04-15T12:00:05.000Z","status":"crash","file":"tests.relay","type":"dispatch","error":"startNewConversation failed after retries","prompt":"..."}
+{"ts":"4/15/2026, 12:00:00 PM","status":"ok","file":"review.relay","type":"dispatch","prompt":"..."}
+{"ts":"4/15/2026, 12:00:05 PM","status":"crash","file":"tests.relay","type":"dispatch","error":"startNewConversation failed after retries","prompt":"..."}
 ```
-The file contains full prompt contents and grows indefinitely. Set `pipelineRelay.writeJsonLog` to `false` to disable it, or delete the file manually when no longer needed.
+Timestamps use the extension host's local date/time format. The file contains full prompt contents and grows indefinitely. Set `pipelineRelay.writeJsonLog` to `false` to disable it, or delete the file manually when no longer needed.
 
 ### Controls
 
@@ -146,6 +152,8 @@ Official API or CLI support in Antigravity may make this extension obsolete. Whe
   - If the agent couldn't write the next trigger, that's a sign of cognitive overload — review the workflow.
 - Addressable followup is not possible with the available commands.
   - The current implementation of followup is primarily intended for use with third-party agents.
+- Model selection is not supported.
+  - The available Antigravity commands do not expose a way to choose the model for a new conversation.
 
 ### Security
 
