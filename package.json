@@ -2,7 +2,7 @@
     "name": "pipeline-relay",
     "displayName": "Pipeline Relay",
     "description": "File-based trigger for Antigravity chats. Create a trigger file in .relay/ → dispatch its contents as a prompt.",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "publisher": "dao-woo",
     "repository": {
         "type": "git",
