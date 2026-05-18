@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3
+
+- Refactored the VS Code entrypoint into a synchronous composition root.
+- Moved the Relay core into `src/core/index.js`.
+- No dispatch behavior changes.
+
 ## 0.1.2
 
 - Updated README.

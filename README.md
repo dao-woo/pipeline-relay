@@ -4,7 +4,7 @@ An Antigravity IDE extension that lets AI agents launch other agents.
 
 **Antigravity currently has no command line, API, or automation features.** This extension works around that limitation in an unusual way: any agent capable of creating files in the workspace can start a new chat in Antigravity or send a message to the current one.
 
-No private APIs. No network calls. No dependencies. ~240 lines of code.
+No private APIs. No network calls. No dependencies. ~240-line Relay core.
 
 ## Demo
 
@@ -89,10 +89,6 @@ Robust workflows depend on how you structure workspace state, prompts, and deleg
 - Processed FIFO by modification time
 - Claimed as `.inflight` during processing
 - Deleted on success, renamed to `.crash` if an Antigravity command fails
-
-### Manual installation
-
-Clone the repo and copy the extension folder into your Antigravity `extensions/` directory, or download the `.vsix` from [Releases](https://github.com/dao-woo/pipeline-relay/releases).
 
 ### Dispatch Log
 
