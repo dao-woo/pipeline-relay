@@ -2,7 +2,7 @@
 
 An Antigravity IDE extension that lets AI agents launch other agents.
 
-**Antigravity currently has no command line, API, or automation features.** This extension works around that limitation in an unusual way: any agent capable of creating files in the workspace can start a new chat in Antigravity or send a message to the current one.
+**The Antigravity IDE has no API or automation features: no way for an agent to start another agent.** This extension works around that limitation in an unusual way: any agent capable of creating files in the workspace can start a new chat in Antigravity or send a message to the current one.
 
 No private APIs. No network calls. No dependencies. ~240-line Relay core.
 
@@ -110,6 +110,7 @@ Timestamps use the extension host's local date/time format. The file contains fu
 | Setting | Default | Description |
 |---------|---------|-------------|
 | `pipelineRelay.startPaused` | `true` | Start paused on activation. Set to `false` to begin watching immediately |
+| `pipelineRelay.dispatchDelay` | `0` | Delay (ms) after claiming a trigger before creating a new chat. Does not apply to followup triggers |
 | `pipelineRelay.afterNewChatDelay` | `2000` | Delay (ms) after creating a new chat before sending the prompt |
 | `pipelineRelay.afterSendDelay` | `2000` | Delay (ms) after sending the prompt before processing the next trigger |
 | `pipelineRelay.writeJsonLog` | `true` | Write full-prompt JSONL dispatch events to `.relay/.logs/relay.jsonl` |
@@ -137,7 +138,7 @@ The extension uses the standard VS Code extension API (`vscode.commands.executeC
 - `antigravity.startNewConversation`
 - `antigravity.sendPromptToAgentPanel`
 
-Official API or CLI support in Antigravity may make this extension obsolete. Whether this file-based mechanism still has value will depend on what native automation actually provides.
+The trigger file is an open dispatch interface: any tool that can write to the workspace — a third-party CLI agent, a script, a CI job, or an Antigravity agent itself — can start and chain conversations in the IDE, mixing agents from different vendors in one workflow.
 
 ### Limitations
 

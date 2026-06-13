@@ -2,7 +2,7 @@
     "name": "pipeline-relay",
     "displayName": "Pipeline Relay",
     "description": "File-based trigger for Antigravity chats. Create a trigger file in .relay/ → dispatch its contents as a prompt.",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "publisher": "dao-woo",
     "repository": {
         "type": "git",
@@ -47,6 +47,11 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Start paused on activation. When true, you need to click the status bar button to begin watching. Prevents stale files from previous sessions from auto-dispatching."
+                },
+                "pipelineRelay.dispatchDelay": {
+                    "type": "number",
+                    "default": 0,
+                    "description": "Delay (ms) after claiming a trigger before creating a new chat. Does not apply to followup triggers."
                 },
                 "pipelineRelay.afterNewChatDelay": {
                     "type": "number",

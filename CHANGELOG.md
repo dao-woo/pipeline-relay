@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4
+
+- Added `pipelineRelay.dispatchDelay` (default `0`): delay (ms) after a trigger is claimed and before a new chat is created. Does not apply to followup triggers.
+- README: scoped the missing-automation claim to the Antigravity IDE, removed the obsolescence prediction, and described the trigger file as an open dispatch interface.
+
 ## 0.1.3
 
 - Refactored the VS Code entrypoint into a synchronous composition root.

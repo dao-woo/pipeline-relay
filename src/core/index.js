@@ -41,6 +41,7 @@ function getConfig() {
     const cfg = vscode.workspace.getConfiguration('pipelineRelay');
     return {
         startPaused: cfg.get('startPaused', true),
+        dispatchDelay: cfg.get('dispatchDelay', 0),
         afterNewChatDelay: cfg.get('afterNewChatDelay', 2000),
         afterSendDelay: cfg.get('afterSendDelay', 2000),
         writeJsonLog: cfg.get('writeJsonLog', true),
@@ -193,6 +194,7 @@ async function handleTrigger(filePath, workspaceRoot) {
 
     // Dispatch opens a new chat; followup uses the active chat
     if (!isFollowup) {
+        await new Promise(r => setTimeout(r, config.dispatchDelay));
         if (!await retryCommand('antigravity.startNewConversation', [], MAX_RETRIES)) {
             const crashPath = filePath + '.crash';
             fs.renameSync(inflightPath, crashPath);
